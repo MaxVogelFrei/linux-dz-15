@@ -85,46 +85,55 @@ Vagrant.configure("2") do |config|
         when "inetRouter"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             sysctl net.ipv4.conf.all.forwarding=1
-            iptables -t nat -A POSTROUTING ! -d 192.168.0.0/16 -o eth0 -j MASQUERADE
+            iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+            ip route add 192.168.0.0/16 via 192.168.255.2
             SHELL
         when "centralRouter"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
-            sysctl net.ipv4.conf.all.forwarding=1
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
 #            echo "GATEWAY=192.168.255.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
+            sysctl net.ipv4.conf.all.forwarding=1
+            ip route add default via 192.168.255.1
+            ip route add 192.168.1.0/24 via 192.168.255.6
+            ip route add 192.168.2.0/24 via 192.168.255.10
             SHELL
         when "centralServer"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
 #            echo "GATEWAY=192.168.0.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
+            ip route add default via 192.168.0.1
             SHELL
         when "Office1Router"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
-            sysctl net.ipv4.conf.all.forwarding=1
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 #            echo "GATEWAY=192.168.255.5" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
+            sysctl net.ipv4.conf.all.forwarding=1
+            ip route add default via 192.168.255.5
             SHELL
         when "Office1Server"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 #            echo "GATEWAY=192.168.2.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
+            ip route add default via 192.168.2.1
             SHELL
         when "Office2Router"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
-            sysctl net.ipv4.conf.all.forwarding=1
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 #            echo "GATEWAY=192.168.255.9" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
+            sysctl net.ipv4.conf.all.forwarding=1
+            ip route add default via 192.168.255.9
             SHELL
         when "Office2Server"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 #            echo "GATEWAY=192.168.1.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
+            ip route add default via 192.168.1.1
             SHELL
 
         end
