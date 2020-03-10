@@ -6,13 +6,13 @@
 
 #### Router
 def_gw 10.0.0.1  
-##### eth2-to-inet
+##### eth2-inet
 ip 10.0.0.?  
 net ?  
 mask ?  
 bc ?  
 hosts ?  
-##### eth3-to-central
+##### eth3-central
 ip 192.168.255.1  
 net 192.168.255.0/30  
 mask 255.255.255.252  
@@ -59,6 +59,15 @@ net 192.168.255.8/30
 mask 255.255.255.252  
 bc 192.168.255.11  
 hosts 2  
+
+#### Server
+def_gw 192.168.0.1
+##### eth2
+ip 192.168.0.2
+net 192.168.0.0/28
+mask 255.255.255.240
+bc 192.168.0.15
+hosts 14
 
 ### Office1
 
