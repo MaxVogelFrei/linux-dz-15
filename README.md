@@ -106,73 +106,87 @@ ip route add default via 192.168.1.1
 * Сервера видят друг друга
 * Доступ во внешнюю сеть идет через inetRouter
 
+Проверка centralServer
 ```bash
-ping Office1
-[root@centralServer ~]# ping 192.168.2.2
-PING 192.168.2.2 (192.168.2.2) 56(84) bytes of data.
-64 bytes from 192.168.2.2: icmp_seq=1 ttl=62 time=0.947 ms
-64 bytes from 192.168.2.2: icmp_seq=2 ttl=62 time=1.03 ms
-64 bytes from 192.168.2.2: icmp_seq=3 ttl=62 time=1.00 ms
-64 bytes from 192.168.2.2: icmp_seq=4 ttl=62 time=0.947 ms
-64 bytes from 192.168.2.2: icmp_seq=5 ttl=62 time=1.05 ms
-ping Office2
-[root@centralServer ~]# ping 192.168.1.2
-PING 192.168.1.2 (192.168.1.2) 56(84) bytes of data.
-64 bytes from 192.168.1.2: icmp_seq=1 ttl=62 time=0.952 ms
-64 bytes from 192.168.1.2: icmp_seq=2 ttl=62 time=1.00 ms
-64 bytes from 192.168.1.2: icmp_seq=3 ttl=62 time=1.01 ms
-64 bytes from 192.168.1.2: icmp_seq=4 ttl=62 time=1.03 ms
-64 bytes from 192.168.1.2: icmp_seq=5 ttl=62 time=0.980 ms
-ping inet
-[root@centralServer ~]# ping 8.8.8.8
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=59 time=17.3 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=59 time=17.4 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=59 time=18.2 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=59 time=17.2 ms
-64 bytes from 8.8.8.8: icmp_seq=5 ttl=59 time=17.1 ms
+[root@centralServer ~]# traceroute ya.ru
+traceroute to ya.ru (87.250.250.242), 30 hops max, 60 byte packets
+ 1  gateway (192.168.0.1)  0.359 ms  0.244 ms  0.151 ms
+ 2  192.168.255.1 (192.168.255.1)  0.678 ms  0.551 ms  0.666 ms
+ 3  * * *
+ 4  * * *
+ 5  * * *
+ 6  c4500x-hq-v19.rinet.net (86.62.124.92)  6.060 ms  3.430 ms  4.015 ms
+ 7  a7280-m9-v4.rinet.net (86.62.124.193)  1.419 ms  1.335 ms  1.596 ms
+ 8  dante.yndx.net (195.208.208.93)  1.936 ms  2.070 ms  1.569 ms
+ 9  ya.ru (87.250.250.242)  8.688 ms  8.525 ms  4.338 ms
 ```
 ```bash
-[root@Office1Server ~]# ping 192.168.0.1
-PING 192.168.0.1 (192.168.0.1) 56(84) bytes of data.
-64 bytes from 192.168.0.1: icmp_seq=1 ttl=63 time=0.612 ms
-64 bytes from 192.168.0.1: icmp_seq=2 ttl=63 time=0.724 ms
-64 bytes from 192.168.0.1: icmp_seq=3 ttl=63 time=0.757 ms
-64 bytes from 192.168.0.1: icmp_seq=4 ttl=63 time=0.711 ms
-64 bytes from 192.168.0.1: icmp_seq=5 ttl=63 time=0.661 ms
-64 bytes from 192.168.0.1: icmp_seq=6 ttl=63 time=0.667 ms
-[root@Office1Server ~]# ping 192.168.1.1
-PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
-64 bytes from 192.168.1.1: icmp_seq=1 ttl=62 time=1.04 ms
-64 bytes from 192.168.1.1: icmp_seq=2 ttl=62 time=1.18 ms
-64 bytes from 192.168.1.1: icmp_seq=3 ttl=62 time=1.02 ms
-64 bytes from 192.168.1.1: icmp_seq=4 ttl=62 time=1.02 ms
-64 bytes from 192.168.1.1: icmp_seq=5 ttl=62 time=0.890 ms
-[root@Office1Server ~]# ping 8.8.8.8
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=57 time=33.5 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=57 time=32.7 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=57 time=32.9 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=57 time=17.6 ms
+[root@centralServer ~]# traceroute 192.168.1.2
+traceroute to 192.168.1.2 (192.168.1.2), 30 hops max, 60 byte packets
+ 1  gateway (192.168.0.1)  0.394 ms  0.231 ms  0.214 ms
+ 2  192.168.255.10 (192.168.255.10)  0.552 ms  0.436 ms  0.529 ms
+ 3  192.168.1.2 (192.168.1.2)  0.779 ms  0.689 ms  1.309 ms
+[root@centralServer ~]# traceroute 192.168.2.2
+traceroute to 192.168.2.2 (192.168.2.2), 30 hops max, 60 byte packets
+ 1  gateway (192.168.0.1)  0.375 ms  0.262 ms  0.230 ms
+ 2  192.168.255.6 (192.168.255.6)  0.902 ms  0.812 ms  0.707 ms
+ 3  192.168.2.2 (192.168.2.2)  0.614 ms  0.523 ms  0.924 ms
+```
+
+Проверка Office1Server
+```bash
+[root@Office1Server ~]# traceroute ya.ru
+traceroute to ya.ru (87.250.250.242), 30 hops max, 60 byte packets
+ 1  gateway (192.168.2.1)  0.310 ms  0.198 ms  0.102 ms
+ 2  192.168.255.5 (192.168.255.5)  0.564 ms  0.458 ms  0.402 ms
+ 3  192.168.255.1 (192.168.255.1)  0.694 ms  0.910 ms  0.907 ms
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  a7280-m9-v4.rinet.net (86.62.124.193)  2.496 ms  2.352 ms  2.170 ms
+ 9  dante.yndx.net (195.208.208.93)  2.146 ms  2.025 ms  2.224 ms
+10  vla-32z4-eth-trunk1-1.yndx.net (93.158.172.211)  5.233 ms  5.517 ms ya.ru (87.250.250.242)  4.672 ms
 ```
 ```bash
-[root@Office2Server ~]# ping 192.168.0.1
-PING 192.168.0.1 (192.168.0.1) 56(84) bytes of data.
-64 bytes from 192.168.0.1: icmp_seq=1 ttl=63 time=0.533 ms
-64 bytes from 192.168.0.1: icmp_seq=2 ttl=63 time=0.655 ms
-64 bytes from 192.168.0.1: icmp_seq=3 ttl=63 time=0.663 ms
-64 bytes from 192.168.0.1: icmp_seq=4 ttl=63 time=0.680 ms
-64 bytes from 192.168.0.1: icmp_seq=5 ttl=63 time=0.766 ms
-[root@Office2Server ~]# ping 192.168.2.1
-PING 192.168.2.1 (192.168.2.1) 56(84) bytes of data.
-64 bytes from 192.168.2.1: icmp_seq=1 ttl=62 time=1.01 ms
-64 bytes from 192.168.2.1: icmp_seq=2 ttl=62 time=0.975 ms
-64 bytes from 192.168.2.1: icmp_seq=3 ttl=62 time=1.03 ms
-64 bytes from 192.168.2.1: icmp_seq=4 ttl=62 time=1.01 ms
-[root@Office2Server ~]# ping 8.8.8.8
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=57 time=17.7 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=57 time=17.6 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=57 time=17.6 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=57 time=20.4 ms
+[root@Office1Server ~]# traceroute 192.168.0.2
+traceroute to 192.168.0.2 (192.168.0.2), 30 hops max, 60 byte packets
+ 1  gateway (192.168.2.1)  0.342 ms  0.195 ms  0.190 ms
+ 2  192.168.255.5 (192.168.255.5)  0.561 ms  0.881 ms  0.760 ms
+ 3  192.168.0.2 (192.168.0.2)  1.217 ms  1.213 ms  1.125 ms
+[root@Office1Server ~]# traceroute 192.168.1.2
+traceroute to 192.168.1.2 (192.168.1.2), 30 hops max, 60 byte packets
+ 1  gateway (192.168.2.1)  0.356 ms  0.244 ms  0.153 ms
+ 2  192.168.255.5 (192.168.255.5)  0.753 ms  0.620 ms  0.637 ms
+ 3  192.168.255.10 (192.168.255.10)  1.257 ms  1.169 ms  0.885 ms
+ 4  192.168.1.2 (192.168.1.2)  0.768 ms  0.711 ms  0.923 ms
 ```
+Проверка Office2Server
+```bash
+[root@Office2Server ~]# traceroute ya.ru
+traceroute to ya.ru (87.250.250.242), 30 hops max, 60 byte packets
+ 1  gateway (192.168.1.1)  0.425 ms  0.263 ms  0.229 ms
+ 2  192.168.255.9 (192.168.255.9)  0.495 ms  0.423 ms  0.457 ms
+ 3  192.168.255.1 (192.168.255.1)  1.760 ms  1.394 ms  1.284 ms
+ 4  * * *
+ 5  * * *
+ 6  * * *
+ 7  * * *
+ 8  a7280-m9-v4.rinet.net (86.62.124.193)  2.403 ms  1.722 ms  1.656 ms
+ 9  dante.yndx.net (195.208.208.93)  6.396 ms  5.445 ms  4.741 ms
+10  ya.ru (87.250.250.242)  4.561 ms  4.522 ms  7.878 ms
+```
+```bash
+[root@Office2Server ~]# traceroute 192.168.0.2
+traceroute to 192.168.0.2 (192.168.0.2), 30 hops max, 60 byte packets
+ 1  gateway (192.168.1.1)  0.324 ms  0.202 ms  0.194 ms
+ 2  192.168.255.9 (192.168.255.9)  0.765 ms  0.636 ms  0.541 ms
+ 3  192.168.0.2 (192.168.0.2)  0.702 ms  0.616 ms  0.612 ms
+[root@Office2Server ~]# traceroute 192.168.2.2
+traceroute to 192.168.2.2 (192.168.2.2), 30 hops max, 60 byte packets
+ 1  gateway (192.168.1.1)  0.332 ms  0.172 ms  0.167 ms
+ 2  192.168.255.9 (192.168.255.9)  0.513 ms  0.498 ms  0.410 ms
+ 3  192.168.255.6 (192.168.255.6)  1.389 ms  1.807 ms  2.297 ms
+ 4  192.168.2.2 (192.168.2.2)  2.243 ms  2.131 ms  2.035 ms
+```
+

@@ -77,7 +77,8 @@ Vagrant.configure("2") do |config|
 
         box.vm.provision "shell", inline: <<-SHELL
           mkdir -p ~root/.ssh
-                cp ~vagrant/.ssh/auth* ~root/.ssh
+          cp ~vagrant/.ssh/auth* ~root/.ssh
+          yum install traceroute -y
         SHELL
         
         case boxname.to_s
