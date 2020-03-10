@@ -122,6 +122,7 @@ traceroute to 192.168.1.2 (192.168.1.2), 30 hops max, 60 byte packets
  1  gateway (192.168.0.1)  0.394 ms  0.231 ms  0.214 ms
  2  192.168.255.10 (192.168.255.10)  0.552 ms  0.436 ms  0.529 ms
  3  192.168.1.2 (192.168.1.2)  0.779 ms  0.689 ms  1.309 ms
+
 [root@centralServer ~]# traceroute 192.168.2.2
 traceroute to 192.168.2.2 (192.168.2.2), 30 hops max, 60 byte packets
  1  gateway (192.168.0.1)  0.375 ms  0.262 ms  0.230 ms
@@ -150,6 +151,7 @@ traceroute to 192.168.0.2 (192.168.0.2), 30 hops max, 60 byte packets
  1  gateway (192.168.2.1)  0.342 ms  0.195 ms  0.190 ms
  2  192.168.255.5 (192.168.255.5)  0.561 ms  0.881 ms  0.760 ms
  3  192.168.0.2 (192.168.0.2)  1.217 ms  1.213 ms  1.125 ms
+
 [root@Office1Server ~]# traceroute 192.168.1.2
 traceroute to 192.168.1.2 (192.168.1.2), 30 hops max, 60 byte packets
  1  gateway (192.168.2.1)  0.356 ms  0.244 ms  0.153 ms
@@ -178,6 +180,7 @@ traceroute to 192.168.0.2 (192.168.0.2), 30 hops max, 60 byte packets
  1  gateway (192.168.1.1)  0.324 ms  0.202 ms  0.194 ms
  2  192.168.255.9 (192.168.255.9)  0.765 ms  0.636 ms  0.541 ms
  3  192.168.0.2 (192.168.0.2)  0.702 ms  0.616 ms  0.612 ms
+
 [root@Office2Server ~]# traceroute 192.168.2.2
 traceroute to 192.168.2.2 (192.168.2.2), 30 hops max, 60 byte packets
  1  gateway (192.168.1.1)  0.332 ms  0.172 ms  0.167 ms
