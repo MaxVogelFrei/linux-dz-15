@@ -1,12 +1,14 @@
 # linux-dz-15
-Network
+## Network
 
-Office1  
+### Теоретическая часть
 
-Router  
+#### Office1  
+
+##### Router    
 def_gw 192.168.255.4  
 
-eth2 
+eth2  
 ip 192.168.2.1  
 net 192.168.2.0/26  
 mask 255.255.255.192  
