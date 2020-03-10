@@ -95,8 +95,8 @@ Vagrant.configure("2") do |config|
             systemctl restart network
             sysctl net.ipv4.conf.all.forwarding=1
             ip route add default via 192.168.255.1
-            ip route add 192.168.1.0/24 via 192.168.255.6
-            ip route add 192.168.2.0/24 via 192.168.255.10
+            ip route add 192.168.2.0/24 via 192.168.255.6
+            ip route add 192.168.1.0/24 via 192.168.255.10
             SHELL
         when "centralServer"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
