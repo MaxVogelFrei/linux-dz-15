@@ -1,40 +1,4 @@
 # Network
-##
-### inet
-#### Router
-```bash
-ip route add 192.168.0.0/16 via 192.168.255.2
-```
-### central
-#### Router
-```bash
-ip route add default via 192.168.255.1
-ip route add 192.168.2.0/24 via 192.168.255.6
-ip route add 192.168.1.0/24 via 192.168.255.10
-```
-#### Server
-```bash
-ip route add default via 192.168.0.1
-```
-### Office1
-#### Router
-```bash
-ip route add default via 192.168.255.5
-```
-#### Server
-```bash
-ip route add default via 192.168.2.1
-```
-### Office2
-#### Router
-```bash
-ip route add default via 192.168.255.9
-```
-#### Server
-```bash
-ip route add default via 192.168.1.1
-```
-
 ## Теоретическая часть
 ### Inet
 #### Router
@@ -92,4 +56,51 @@ gateway 192.168.1.1
 |192.168.0.16/28|192.168.0.31|14|
 |192.168.0.48/28|192.168.0.63|14|
 |192.168.0.128/25|192.168.0.255|126|
+
+## Практическая часть
+Для настроек сетевых адаптеров в Vagrantfile использую адреса интерфейсов из теоретической части
+в секции провижн, для всех кроме inetRouter, нужно отключить маршрут по умолчанию через 0 интерфейс
+```bash
+echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+```
+включить форвардинг
+```bash
+sysctl net.ipv4.conf.all.forwarding=1
+```
+и добавить маршруты к подсетям на хостах
+### inet
+#### Router
+```bash
+ip route add 192.168.0.0/16 via 192.168.255.2
+```
+### central
+#### Router
+```bash
+ip route add default via 192.168.255.1
+ip route add 192.168.2.0/24 via 192.168.255.6
+ip route add 192.168.1.0/24 via 192.168.255.10
+```
+#### Server
+```bash
+ip route add default via 192.168.0.1
+```
+### Office1
+#### Router
+```bash
+ip route add default via 192.168.255.5
+```
+#### Server
+```bash
+ip route add default via 192.168.2.1
+```
+### Office2
+#### Router
+```bash
+ip route add default via 192.168.255.9
+```
+#### Server
+```bash
+ip route add default via 192.168.1.1
+```
+
 
