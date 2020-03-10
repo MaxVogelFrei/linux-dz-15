@@ -4,7 +4,6 @@
 MACHINES = {
   :inetRouter => {
         :box_name => "centos/7",
-        #:public => {:ip => '10.10.10.1', :adapter => 1},
         :net => [
                    {ip: '192.168.255.1', adapter: 2, netmask: "255.255.255.252", virtualbox__intnet: "irouter-net"},
                 ]
@@ -91,7 +90,6 @@ Vagrant.configure("2") do |config|
         when "centralRouter"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
-#            echo "GATEWAY=192.168.255.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
             sysctl net.ipv4.conf.all.forwarding=1
             ip route add default via 192.168.255.1
@@ -101,14 +99,12 @@ Vagrant.configure("2") do |config|
         when "centralServer"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0 
-#            echo "GATEWAY=192.168.0.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
             ip route add default via 192.168.0.1
             SHELL
         when "Office1Router"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-#            echo "GATEWAY=192.168.255.5" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
             sysctl net.ipv4.conf.all.forwarding=1
             ip route add default via 192.168.255.5
@@ -116,14 +112,12 @@ Vagrant.configure("2") do |config|
         when "Office1Server"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-#            echo "GATEWAY=192.168.2.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
             ip route add default via 192.168.2.1
             SHELL
         when "Office2Router"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-#            echo "GATEWAY=192.168.255.9" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
             sysctl net.ipv4.conf.all.forwarding=1
             ip route add default via 192.168.255.9
@@ -131,7 +125,6 @@ Vagrant.configure("2") do |config|
         when "Office2Server"
           box.vm.provision "shell", run: "always", inline: <<-SHELL
             echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-#            echo "GATEWAY=192.168.1.1" >> /etc/sysconfig/network-scripts/ifcfg-eth1
             systemctl restart network
             ip route add default via 192.168.1.1
             SHELL

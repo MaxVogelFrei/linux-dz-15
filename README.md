@@ -102,5 +102,77 @@ ip route add default via 192.168.255.9
 ```bash
 ip route add default via 192.168.1.1
 ```
+## Результат
+* Сервера видят друг друга
+* Доступ во внешнюю сеть идет через inetRouter
 
-
+```bash
+ping Office1
+[root@centralServer ~]# ping 192.168.2.2
+PING 192.168.2.2 (192.168.2.2) 56(84) bytes of data.
+64 bytes from 192.168.2.2: icmp_seq=1 ttl=62 time=0.947 ms
+64 bytes from 192.168.2.2: icmp_seq=2 ttl=62 time=1.03 ms
+64 bytes from 192.168.2.2: icmp_seq=3 ttl=62 time=1.00 ms
+64 bytes from 192.168.2.2: icmp_seq=4 ttl=62 time=0.947 ms
+64 bytes from 192.168.2.2: icmp_seq=5 ttl=62 time=1.05 ms
+ping Office2
+[root@centralServer ~]# ping 192.168.1.2
+PING 192.168.1.2 (192.168.1.2) 56(84) bytes of data.
+64 bytes from 192.168.1.2: icmp_seq=1 ttl=62 time=0.952 ms
+64 bytes from 192.168.1.2: icmp_seq=2 ttl=62 time=1.00 ms
+64 bytes from 192.168.1.2: icmp_seq=3 ttl=62 time=1.01 ms
+64 bytes from 192.168.1.2: icmp_seq=4 ttl=62 time=1.03 ms
+64 bytes from 192.168.1.2: icmp_seq=5 ttl=62 time=0.980 ms
+ping inet
+[root@centralServer ~]# ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=59 time=17.3 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=59 time=17.4 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=59 time=18.2 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=59 time=17.2 ms
+64 bytes from 8.8.8.8: icmp_seq=5 ttl=59 time=17.1 ms
+```
+```bash
+[root@Office1Server ~]# ping 192.168.0.1
+PING 192.168.0.1 (192.168.0.1) 56(84) bytes of data.
+64 bytes from 192.168.0.1: icmp_seq=1 ttl=63 time=0.612 ms
+64 bytes from 192.168.0.1: icmp_seq=2 ttl=63 time=0.724 ms
+64 bytes from 192.168.0.1: icmp_seq=3 ttl=63 time=0.757 ms
+64 bytes from 192.168.0.1: icmp_seq=4 ttl=63 time=0.711 ms
+64 bytes from 192.168.0.1: icmp_seq=5 ttl=63 time=0.661 ms
+64 bytes from 192.168.0.1: icmp_seq=6 ttl=63 time=0.667 ms
+[root@Office1Server ~]# ping 192.168.1.1
+PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
+64 bytes from 192.168.1.1: icmp_seq=1 ttl=62 time=1.04 ms
+64 bytes from 192.168.1.1: icmp_seq=2 ttl=62 time=1.18 ms
+64 bytes from 192.168.1.1: icmp_seq=3 ttl=62 time=1.02 ms
+64 bytes from 192.168.1.1: icmp_seq=4 ttl=62 time=1.02 ms
+64 bytes from 192.168.1.1: icmp_seq=5 ttl=62 time=0.890 ms
+[root@Office1Server ~]# ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=57 time=33.5 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=57 time=32.7 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=57 time=32.9 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=57 time=17.6 ms
+```
+```bash
+[root@Office2Server ~]# ping 192.168.0.1
+PING 192.168.0.1 (192.168.0.1) 56(84) bytes of data.
+64 bytes from 192.168.0.1: icmp_seq=1 ttl=63 time=0.533 ms
+64 bytes from 192.168.0.1: icmp_seq=2 ttl=63 time=0.655 ms
+64 bytes from 192.168.0.1: icmp_seq=3 ttl=63 time=0.663 ms
+64 bytes from 192.168.0.1: icmp_seq=4 ttl=63 time=0.680 ms
+64 bytes from 192.168.0.1: icmp_seq=5 ttl=63 time=0.766 ms
+[root@Office2Server ~]# ping 192.168.2.1
+PING 192.168.2.1 (192.168.2.1) 56(84) bytes of data.
+64 bytes from 192.168.2.1: icmp_seq=1 ttl=62 time=1.01 ms
+64 bytes from 192.168.2.1: icmp_seq=2 ttl=62 time=0.975 ms
+64 bytes from 192.168.2.1: icmp_seq=3 ttl=62 time=1.03 ms
+64 bytes from 192.168.2.1: icmp_seq=4 ttl=62 time=1.01 ms
+[root@Office2Server ~]# ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=57 time=17.7 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=57 time=17.6 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=57 time=17.6 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=57 time=20.4 ms
+```
