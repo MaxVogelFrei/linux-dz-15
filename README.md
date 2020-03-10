@@ -1,36 +1,36 @@
 # Network
 ##
-###inet
-####Router
+### inet
+#### Router
 ```bash
 ip route add 192.168.0.0/16 via 192.168.255.2
 ```
-###central
-####Router
+### central
+#### Router
 ```bash
 ip route add default via 192.168.255.1
 ip route add 192.168.2.0/24 via 192.168.255.6
 ip route add 192.168.1.0/24 via 192.168.255.10
 ```
-####Server
+#### Server
 ```bash
 ip route add default via 192.168.0.1
 ```
-###Office1
-####Router
+### Office1
+#### Router
 ```bash
 ip route add default via 192.168.255.5
 ```
-####Server
+#### Server
 ```bash
 ip route add default via 192.168.2.1
 ```
-###Office2
-####Router
+### Office2
+#### Router
 ```bash
 ip route add default via 192.168.255.9
 ```
-####Server
+#### Server
 ```bash
 ip route add default via 192.168.1.1
 ```
