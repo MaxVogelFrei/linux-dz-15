@@ -4,13 +4,13 @@
 ### Inet
 #### Router
 gateway 10.0.0.1
-|eth#|ip|net|mask|broadcast|hosts|dept|
+|eth#|ip|net|mask|broadcast|hosts|name|
 |---|---|---|---|---|---|---|
 |eth1|192.168.255.1|192.168.255.0/30|255.255.255.252|192.168.255.3|2|central|
 ### Central
 #### Router
 gateway 192.168.255.1
-|eth#|ip|net|mask|broadcast|hosts|dept|
+|eth#|ip|net|mask|broadcast|hosts|name|
 |---|---|---|---|---|---|---|
 |eth1|192.168.0.1|192.168.0.0/28|255.255.255.240|192.168.0.15|14|dir|
 |eth2|192.168.0.33|192.168.0.32/28|255.255.255.240|192.168.0.47|14|hw|
@@ -26,7 +26,7 @@ gateway 192.168.0.1
 ### Office1
 #### Router
 gateway 192.168.255.5
-|eth#|ip|net|mask|broadcast|hosts|dept|
+|eth#|ip|net|mask|broadcast|hosts|name|
 |---|---|---|---|---|---|---|
 |eth1|192.168.2.1|192.168.2.0/26|255.255.255.192|192.168.2.63|62|dev|
 |eth2|192.168.2.65|192.168.2.64/26|255.255.255.192|192.168.2.127|62|test|
@@ -40,7 +40,7 @@ gateway 192.168.2.1
 |eth1|192.168.2.2|192.168.2.0/26|255.255.255.192|
 ### Office2
 gateway 192.168.255.9
-|eth#|ip|net|mask|broadcast|hosts|dept|
+|eth#|ip|net|mask|broadcast|hosts|name|
 |---|---|---|---|---|---|---|
 |eth1|192.168.1.1|192.168.1.0/25|255.255.255.128|192.168.1.127|126|dev|
 |eth2|192.168.1.129|192.168.1.128/26|255.255.255.192|192.168.1.191|62|test|
