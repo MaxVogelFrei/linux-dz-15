@@ -1,17 +1,13 @@
 # Network
 
 ## Теоретическая часть
-
 ### Inet
-
 #### Router
 gateway 10.0.0.1
 |eth#|ip|net|mask|broadcast|hosts|dept|
 |---|---|---|---|---|---|---|
 |eth1|192.168.255.1|192.168.255.0/30|255.255.255.252|192.168.255.3|2|central|
-
 ### Central
-
 #### Router
 gateway 192.168.255.1
 |eth#|ip|net|mask|broadcast|hosts|dept|
@@ -27,9 +23,7 @@ gateway 192.168.0.1
 |eth#|ip|net|mask|
 |---|---|---|---|
 |eth1|192.168.0.2|192.168.0.0/28|255.255.255.240|
-
 ### Office1
-
 #### Router
 gateway 192.168.255.5
 |eth#|ip|net|mask|broadcast|hosts|dept|
@@ -44,7 +38,6 @@ gateway 192.168.2.1
 |eth#|ip|net|mask|
 |---|---|---|---|
 |eth1|192.168.2.2|192.168.2.0/26|255.255.255.192|
-
 ### Office2
 gateway 192.168.255.9
 |eth#|ip|net|mask|broadcast|hosts|dept|
@@ -58,7 +51,6 @@ gateway 192.168.1.1
 |eth#|ip|net|mask|
 |---|---|---|---|
 |eth1|192.168.1.2|192.168.1.0/25|255.255.255.128|
-
 ### Свободные подсети
 |net|broadcast|hosts|
 |---|---|---|
