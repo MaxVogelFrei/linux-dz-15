@@ -9,8 +9,8 @@ ip route add 192.168.0.0/16 via 192.168.255.2
 ####Router
 ```bash
 ip route add default via 192.168.255.1
-ip route add 192.168.1.0/24 via 192.168.255.6
-ip route add 192.168.2.0/24 via 192.168.255.10
+ip route add 192.168.2.0/24 via 192.168.255.6
+ip route add 192.168.1.0/24 via 192.168.255.10
 ```
 ####Server
 ```bash
